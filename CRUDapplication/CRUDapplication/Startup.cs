@@ -32,7 +32,13 @@ namespace CRUDapplication
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CRUDapplication", Version = "v1" });
             });
-            services.AddSingleton<ClassDB>();
+            services.AddSingleton<ClassDB>((IServiceProvider sp) =>
+            {
+                var classinner = sp.GetService<List<UserRecord>>();
+                return new ClassDB(classinner);
+
+            });
+            services.AddSingleton<List<UserRecord>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

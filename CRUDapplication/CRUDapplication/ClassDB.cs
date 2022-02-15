@@ -8,18 +8,17 @@ namespace CRUDapplication
 {
     public class ClassDB
     {
-        public string name="subbu first";
-        private readonly ILogger<ClassDB> logger;
-        public ClassDB(ILogger<ClassDB> logger)
+        public readonly List<UserRecord> userRecord;
+  
+        public ClassDB(List<UserRecord> userRecord)
         {
-            this.logger = logger;
+            this.userRecord = userRecord;
 
         }
 
         public string GetOutput()
         {
-            logger.LogInformation("Class DB was called");
-            return "class DB: " + GetHashCode();
+            return userRecord[0].userId.ToString();
         }
 
     }

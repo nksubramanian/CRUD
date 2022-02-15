@@ -21,19 +21,20 @@ namespace CRUDapplication.Controllers
         }
 
         [HttpGet]
-        public string Get()
+        public string Input()
         {
 
-            classDB.name = "subbu";
+            classDB.userRecord.Add(new UserRecord(4));
             return "name done";
         }
 
 
         [HttpGet("x")]
-        public string Getx()
+        public string Output()
         {
+            return classDB.userRecord.Count.ToString();
 
-            return classDB.name;
+
         }
 
     }
