@@ -35,10 +35,12 @@ namespace CRUDapplication
             services.AddSingleton<ClassDB>((IServiceProvider sp) =>
             {
                 var classinner = sp.GetService<List<UserRecord>>();
-                return new ClassDB(classinner);
+                var exceptionstring = sp.GetService<List<string>>();
+                return new ClassDB(classinner, exceptionstring);
 
             });
             services.AddSingleton<List<UserRecord>>();
+            services.AddSingleton<List<string>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

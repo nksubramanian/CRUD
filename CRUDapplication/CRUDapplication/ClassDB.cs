@@ -10,10 +10,12 @@ namespace CRUDapplication
     public class ClassDB
     {
         public readonly List<UserRecord> userRecords;
-  
-        public ClassDB(List<UserRecord> userRecords)
+        public readonly List<string> exceptions;
+
+        public ClassDB(List<UserRecord> userRecords, List<string> exceptions)
         {
             this.userRecords = userRecords;
+            this.exceptions = exceptions;
 
         }
 
@@ -35,6 +37,7 @@ namespace CRUDapplication
             }
             catch(Exception ex)
             {
+                exceptions.Add(ex.Message);
                 throw new InvalidOperationException("Operation Failed");
             } 
         }
@@ -59,6 +62,7 @@ namespace CRUDapplication
             }
             catch (Exception ex)
             {
+                exceptions.Add(ex.Message);
                 throw new InvalidOperationException("Operation Failed");
             }
         }
@@ -82,10 +86,24 @@ namespace CRUDapplication
             }
             catch (Exception ex)
             {
+                exceptions.Add(ex.Message);
                 throw new InvalidOperationException("Operation Failed");
             }
         }
 
+        public List<string> GetException()
+        {
+            try
+            {
+                return exceptions;
+               
+            }
+            catch (Exception ex)
+            {
+                exceptions.Add(ex.Message);
+                throw new InvalidOperationException("Operation Failed");
+            }
+        }
 
 
 

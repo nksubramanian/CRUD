@@ -19,22 +19,8 @@ namespace CRUDapplication.Controllers
         public AddressController(ClassDB classDB)
         {
             this.classDB = classDB;
+            
         }
-
-        [HttpGet]
-        public string Input()
-        {
-            return "name done";
-        }
-
-
-        [HttpGet("x")]
-        public string Output()
-        {
-            return "x";
-
-        }
-
 
         [HttpPost]
         [Route("{userid}/address")]
@@ -72,8 +58,6 @@ namespace CRUDapplication.Controllers
                 return BadRequest(ex.Message);
             }
 
-
-
         }
 
 
@@ -100,28 +84,21 @@ namespace CRUDapplication.Controllers
         }
 
 
-        [HttpGet("profile")]
-        public RedirectResult MyProfile()
+        [HttpGet]
+        [Route("exception")]
+        public async Task<IActionResult> GetExceptions()
         {
-            return Redirect("https://www.c-sharpcorner.com/members/farhan-ahmed24");
-          
+
+            try
+            {
+                return Ok(classDB.GetException());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
-
-
-        [HttpGet("profilex")]
-        public IActionResult MyProfile2()
-        {
-          
-            return Redirect("~/api/users/x");
-        }
-
-        [HttpGet("profilexx")]
-     
-        public IActionResult GetEmployeeById()
-        {
-            return LocalRedirect("~/api/users/x");
-        }
-
 
     }
 }
