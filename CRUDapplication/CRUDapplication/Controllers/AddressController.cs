@@ -79,25 +79,25 @@ namespace CRUDapplication.Controllers
 
         [HttpPut]
         [Route("{userid}/address")]
-        public ActionResult ModifyAddress([FromRoute] string userid)
+        public async Task<IActionResult> ModifyAddress([FromRoute] int userid)
         {
-            string message = $"Hi, {userid}";
-            return Ok(message);
+            try
+            {
+                string address;
+                using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
+                {
+                    address = await reader.ReadToEndAsync();
+                }
+
+                classDB.ModifyRecord(userid, address);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
         }
-
-        [HttpDelete]
-        [Route("{userid}/address")]
-        public ActionResult DeleteAddress([FromRoute] string userid)
-        {
-            string message = $"Hi, {userid}";
-            return Ok(message);
-
-        }
-
-
-
-
 
 
         [HttpGet("profile")]

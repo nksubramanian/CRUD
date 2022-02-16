@@ -64,7 +64,27 @@ namespace CRUDapplication
         }
 
 
+        public void ModifyRecord(int id, string address)
+        {
+            try
+            {
+                foreach (var record in userRecords)
+                {
+                    if (record.userId == id)
+                    {
 
+                        record.address = address;
+                        return;
+
+                    }
+                }
+                throw new InvalidOperationException("Record does not exist");
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Operation Failed");
+            }
+        }
 
 
 
