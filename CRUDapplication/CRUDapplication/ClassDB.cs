@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +9,41 @@ namespace CRUDapplication
 {
     public class ClassDB
     {
-        public readonly List<UserRecord> userRecord;
+        public readonly List<UserRecord> userRecords;
   
-        public ClassDB(List<UserRecord> userRecord)
+        public ClassDB(List<UserRecord> userRecords)
         {
-            this.userRecord = userRecord;
+            this.userRecords = userRecords;
 
         }
 
-        public string GetOutput()
+        public int AddRecord(int id, string address)
         {
-            return userRecord[0].userId.ToString();
+            try 
+            {
+                bool isExist = false;
+                foreach(var record in userRecords)
+                {
+                    if(record.userId==id)
+                    {
+                        isExist = true;
+                        throw new InvalidOperationException("Record already exists");
+              
+                    }
+                }
+
+                userRecords.Add(new UserRecord(id, address));
+                return 1;
+                
+
+            }
+            catch(Exception ex)
+            {
+                throw new InvalidOperationException("Operation Failed");
+            }
+
+
+            
         }
 
     }

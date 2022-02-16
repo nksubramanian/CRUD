@@ -8,10 +8,12 @@ namespace CRUDapplication
     public class UserRecord
     {
         public int userId;
+        public string address;
 
-        public UserRecord(int x)
+        public UserRecord(int x, string address)
         {
             this.userId = x;
+            this.address = address;
         }
 
     }
