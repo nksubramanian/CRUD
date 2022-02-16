@@ -17,7 +17,7 @@ namespace CRUDapplication
 
         }
 
-        public int AddRecord(int id, string address)
+        public void AddRecord(int id, string address)
         {
             try 
             {
@@ -31,20 +31,44 @@ namespace CRUDapplication
               
                     }
                 }
-
                 userRecords.Add(new UserRecord(id, address));
-                return 1;
-                
-
             }
             catch(Exception ex)
             {
                 throw new InvalidOperationException("Operation Failed");
-            }
-
-
-            
+            } 
         }
+
+        public string GetRecord(int id)
+        {
+            try
+            {
+                bool isExist = false;
+                foreach (var record in userRecords)
+                {
+                    if (record.userId == id)
+                    {
+
+                        return record.address;
+
+                    }
+                }
+
+                throw new InvalidOperationException("Does not exists");
+
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Operation Failed");
+            }
+        }
+
+
+
+
+
+
+
 
     }
 }

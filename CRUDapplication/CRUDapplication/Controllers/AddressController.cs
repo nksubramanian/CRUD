@@ -59,10 +59,20 @@ namespace CRUDapplication.Controllers
 
         [HttpGet]
         [Route("{userid}/address")]
-        public ActionResult GetAddress([FromRoute] string userid)
+        public async Task<IActionResult> GetAddress([FromRoute] int userid)
         {
-            string message = $"Hi, {userid}";
-            return Ok(message);
+    
+            try
+            {
+                string address = classDB.GetRecord(userid);
+                return Ok(address);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+
 
         }
 
