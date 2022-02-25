@@ -39,7 +39,7 @@ namespace CRUDapplication.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -91,6 +91,15 @@ namespace CRUDapplication.Controllers
 
             try
             {
+
+                Dictionary<string, string> requestHeaders =
+               new Dictionary<string, string>();
+                foreach (var header in Request.Headers)
+                {
+                    requestHeaders.Add(header.Key, header.Value);
+                }
+               
+
                 return Ok(classDB.GetException());
             }
             catch (Exception ex)

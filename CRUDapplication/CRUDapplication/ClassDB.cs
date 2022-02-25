@@ -38,7 +38,7 @@ namespace CRUDapplication
             catch(Exception ex)
             {
                 exceptions.Add(ex.Message);
-                throw new InvalidOperationException("Operation Failed");
+                throw;
             } 
         }
 
@@ -63,7 +63,7 @@ namespace CRUDapplication
             catch (Exception ex)
             {
                 exceptions.Add(ex.Message);
-                throw new InvalidOperationException("Operation Failed");
+                throw;
             }
         }
 
@@ -87,7 +87,7 @@ namespace CRUDapplication
             catch (Exception ex)
             {
                 exceptions.Add(ex.Message);
-                throw new InvalidOperationException("Operation Failed");
+                throw;
             }
         }
 
@@ -101,7 +101,7 @@ namespace CRUDapplication
             catch (Exception ex)
             {
                 exceptions.Add(ex.Message);
-                throw new InvalidOperationException("Operation Failed");
+                throw;
             }
         }
 
